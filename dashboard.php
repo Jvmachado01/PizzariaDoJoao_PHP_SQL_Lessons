@@ -19,11 +19,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>#1</td>
-                                    <td>Cheddar</td>
-                                    <td>Temperada</td>
-                                    <td>4 Queijos</td>
+                                <?php foreach($pizzas as $pizza): ?>
+                                    <tr>
+                                    <td><?= $pizza["id"] ?></td>
+                                    <td><?= $pizza["borda"] ?></td>
+                                    <td><?= $pizza["massa"] ?></td>
+                                    <td>
+                                        <ul>
+                                            <?php foreach($pizza["sabores"] as $sabor): ?>
+                                                <li><?= $sabor ?></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </td>
                                     <td>
                                         <form action="process/orders.php" method="POST" class="form-group update-form">
                                             <input type="hidden" name="type" value="update">
@@ -48,6 +55,8 @@
                                     </td>
 
                                 </tr>
+
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
