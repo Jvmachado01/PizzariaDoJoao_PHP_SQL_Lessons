@@ -12,6 +12,7 @@
                 <div class="col-md-12">
                     <h2>Monte a pizza como desejar</h2>
                     <form action="process/pizza.php" method="POST" id="pizza-form">
+                        <form action="process/pizza.php" method="POST" id="pizza-form">
                         <div class="form-group">
                             <label for="borda">Borda:</label>
                             <select name="borda" id="borda" class="form-control">
@@ -22,8 +23,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="massas">Massas:</label>
-                            <select name="massas" id="massas" class="form-control">
+                            <select name="massa" id="massa" class="form-control">
                                 <option value="">Selecione a massas</option>
                                 <?php foreach($massas as $massa): ?>
                                     <option value="<?= $massa["id"] ?>"><?= $massa["tipo"] ?></option>

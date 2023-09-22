@@ -1,5 +1,7 @@
 <?php
     include_once("templates/header.php");
+    include_once("process/orders.php");
+    
 ?>
     <div id="main-container">
         <div class="container">
