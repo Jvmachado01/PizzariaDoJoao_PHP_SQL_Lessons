@@ -1,3 +1,21 @@
+<?php 
+
+  include("process/con.php");
+
+  $msg = "";
+
+  if(isset($_SESSION["msg"])) {
+
+    $msg = $_SESSION["msg"];
+    $status = $_SESSION["status"];
+
+    $_SESSION["msg"] = "";
+    $_SESSION["status"] = "";
+
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,12 +41,17 @@
                 <li class="nav-item-active">
                     <a href="index.php" class="nav-link">Peça sua pizza</a>
                 </li>
+                <li class="nav-item-active">
+                    <a href="dashboard.php" class="nav-link">Dashboard</a>
+                </li>
             </ul>
         </div>
 
     </nav>
    </head>
 
-  <div class="alert alert-success">
-    <p>Pedido realizado com sucesso!</p>
-  </div>
+   <?php if($msg != ""): ?>
+    <div class="alert alert-<?= $status ?>">
+      <p><?= $msg ?></p>
+    </div>
+  <?php endif; ?>

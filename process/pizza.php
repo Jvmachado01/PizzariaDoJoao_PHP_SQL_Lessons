@@ -7,23 +7,22 @@
 
     // GET para trazer os dados
     if ($method === "GET") {
-
+        
         $bordasQuery = $con->query("SELECT * FROM bordas;");
         // busca todos os sabores e coloca no array dentro da variável $bordas
         $bordas = $bordasQuery->fetchAll();
-
+        
         $massasQuery = $con->query("SELECT * FROM massas;");
         $massas = $massasQuery->fetchAll();
-
+        
         $saboresQuery = $con->query("SELECT * FROM sabores;");
         $sabores = $saboresQuery->fetchAll();      
-
-      
-
+         
         // POST para remoção/atualização (criação do pedido)
     } else if ($method === "POST") {
-
+        
         $data = $_POST;
+        
 
         // Desmembrar os dados do POST
         $borda = $data["borda"];
@@ -74,6 +73,10 @@
             $stmt->bindParam(":status", $statusId);
 
             $stmt->execute();
+
+            // Exibir mensagem de sucesso
+            $_SESSION["msg"] = "Pedido realizado com sucesso";
+            $_SESSION["status"] = "success";
 
         }
 
