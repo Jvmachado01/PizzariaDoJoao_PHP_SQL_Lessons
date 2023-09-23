@@ -82,24 +82,41 @@
         
 
     } else if ($method === "POST") {
-
-        // REMOVENDO PEDIDOS
+        
         // Verificando o tipo do POST
         $type = $_POST["type"];
+
+        // REMOVENDO PEDIDOS
+        if ($type === "delete") {
+            
+            $pizzaId = $_POST["id"];
     
-        $pizzaId = $_POST["id"];
+            $deleteQuery = $con->prepare("DELETE FROM pedidos WHERE pizza_id = :pizza_id;");
+            $deleteQuery->bindParam(":pizza_id", $pizzaId, PDO::PARAM_INT);
+            $deleteQuery->execute();
+    
+            $_SESSION["msg"] = "Pedido removido com sucesso!";
+            $_SESSION["status"] = "success";
 
-        $deleteQuery = $con->prepare("DELETE FROM pedidos WHERE pizza_id = :pizza_id;");
-        $deleteQuery->bindParam(":pizza_id", $pizzaId, PDO::PARAM_INT);
-        $deleteQuery->execute();
-
-        $_SESSION["msg"] = "Pedido removido com sucesso!";
-        $_SESSION["status"] = "success";
+                // ATUALIZAR STATUS DO PEDIDO
+        } else if ($type === "update") {
+            
+            $pizzaId = $_POST["id"];
+            $statusId = $_POST["status"];
+      
+            $updateQuery = $con->prepare("UPDATE pedidos SET status_id = :status_id WHERE pizza_id = :pizza_id");
+      
+            $updateQuery->bindParam(":pizza_id", $pizzaId, PDO::PARAM_INT);
+            $updateQuery->bindParam(":status_id", $statusId, PDO::PARAM_INT);
+      
+            $updateQuery->execute();
+      
+            $_SESSION["msg"] = "Pedido atualizado com sucesso!";
+            $_SESSION["status"] = "success";
+        }
 
         // retorna para dashboard
         header("Location: ../dashboard.php");  
-
-    }
-
-    
+    }     
+     
 ?>
