@@ -51,7 +51,7 @@
                                     </td>
                                     <td>
                                         <form action="process/orders.php" method="POST">
-                                        <input type="hidden" name="type" value="deltte">
+                                        <input type="hidden" name="type" value="delete">
                                         <input type="hidden" name="id" value="<?= $pizza["id"] ?>">
                                             <button type="submit" class="delete-btn">
                                                 <i class="fas fa-times"></i>

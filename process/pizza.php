@@ -82,6 +82,7 @@
 
         // Retorna para a página home
         header("Location: ..");
+        
 
     }
 ?> 
